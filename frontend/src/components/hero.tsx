@@ -25,6 +25,7 @@ const Hero = ({ onOpenChat }: { onOpenChat: () => void }) => {
           "radial-gradient(circle, rgba(196,181,253,0.15) 0%, rgba(196,181,253,0.07) 30%, transparent 70%)",
         filter: "blur(140px)",
         zIndex: 0,
+        pointerEvents: "none"
       }}
     />
       <div className="container">
