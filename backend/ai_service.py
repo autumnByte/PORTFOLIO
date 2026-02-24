@@ -69,14 +69,13 @@ Resume Context:
     }
 
     try:
-        response = requests.post(url, headers=headers, json=data)
+response = requests.post(url, headers=headers, json=data)
 
-        if response.status_code != 200:
-            return "AI service is currently unavailable."
+if response.status_code != 200:
+    return f"OpenRouter error {response.status_code}: {response.text}"
 
-        result = response.json()
+result = response.json()
+return result["choices"][0]["message"]["content"]
 
-        return result["choices"][0]["message"]["content"]
-
-    except Exception:
-        return "An error occurred while contacting the AI service."
+except Exception as e:
+    return str(e)
