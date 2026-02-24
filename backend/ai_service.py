@@ -67,15 +67,14 @@ Resume Context:
             {"role": "user", "content": user_question}
         ]
     }
+try:
+    response = requests.post(url, headers=headers, json=data)
 
-    try:
-response = requests.post(url, headers=headers, json=data)
+    if response.status_code != 200:
+        return f"OpenRouter error {response.status_code}: {response.text}"
 
-if response.status_code != 200:
-    return f"OpenRouter error {response.status_code}: {response.text}"
-
-result = response.json()
-return result["choices"][0]["message"]["content"]
+    result = response.json()
+    return result["choices"][0]["message"]["content"]
 
 except Exception as e:
     return str(e)
